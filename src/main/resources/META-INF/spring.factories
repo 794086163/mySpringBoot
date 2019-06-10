@@ -1,8 +1,0 @@
-
-//加载监听事件
-org.springframework.context.ApplicationListener=com.didispace.listener.ApplicationEnvironmentPreparedEventListener,\
-  com.didispace.listener.ApplicationFailedEventListener,\
-  com.didispace.listener.ApplicationPreparedEventListener,\
-  com.didispace.listener.ApplicationReadyEventListener,\
-  com.didispace.listener.ApplicationStartedEventListener,\
-  com.didispace.listener.ApplicationStartingEventListener
