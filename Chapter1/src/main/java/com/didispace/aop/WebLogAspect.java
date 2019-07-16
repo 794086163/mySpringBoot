@@ -18,6 +18,9 @@ import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * mongodb日志切面
+ */
 @Component
 @Aspect
 @Order(5)

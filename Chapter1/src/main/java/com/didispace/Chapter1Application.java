@@ -19,6 +19,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.elasticsearch.repository.config.EnableElasticsearchRepositories;
 import org.springframework.statemachine.StateMachine;
 
 import java.util.List;
@@ -32,6 +33,7 @@ import java.util.List;
 @EnableCaching//开启ecaching缓存
 @Configuration
 @Log4j
+@EnableElasticsearchRepositories
 public class Chapter1Application implements CommandLineRunner {
 
     public static void main(String[] args) {

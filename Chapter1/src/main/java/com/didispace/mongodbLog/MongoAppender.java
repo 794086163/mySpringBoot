@@ -9,6 +9,9 @@ import lombok.Data;
 import org.apache.log4j.AppenderSkeleton;
 import org.apache.log4j.spi.LoggingEvent;
 
+/**
+ * 重写log4j的日志代理
+ */
 @Data
 public class MongoAppender extends AppenderSkeleton {
 
@@ -22,13 +25,17 @@ public class MongoAppender extends AppenderSkeleton {
 
     @Override
     protected void append(LoggingEvent event) {
-        if(mongoDatabase == null) {
-            MongoClientURI connectionString = new MongoClientURI(connectionUrl);
-            mongoClient = new MongoClient(connectionString);
-            mongoDatabase = mongoClient.getDatabase(databaseName);
-            logsCollection = mongoDatabase.getCollection(collectionName, BasicDBObject.class);
+        try {
+            if(mongoDatabase == null) {
+                MongoClientURI connectionString = new MongoClientURI(connectionUrl);
+                mongoClient = new MongoClient(connectionString);
+                mongoDatabase = mongoClient.getDatabase(databaseName);
+                logsCollection = mongoDatabase.getCollection(collectionName, BasicDBObject.class);
+            }
+            logsCollection.insertOne((BasicDBObject) event.getMessage());
+        }catch (Exception e){
+            e.printStackTrace();
         }
-        logsCollection.insertOne((BasicDBObject) event.getMessage());
     }
 
 

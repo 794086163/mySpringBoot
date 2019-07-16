@@ -20,6 +20,7 @@ public class GlobalExceptionHandler {
 	
 	@ExceptionHandler(value=Exception.class)
 	public ModelAndView defaultException(HttpServletRequest req,Exception ex){
+		ex.printStackTrace();
 		ModelAndView model=new ModelAndView();
 		model.setViewName("error");//设置视图时需要添加thymeleaf模板引擎
 		model.addObject("url", req.getRequestURL().toString());
